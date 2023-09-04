@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# Check if PYFILE environment variable is set
+if [ -z "$PYFILE" ]; then
+  echo "PYFILE environment variable is not set."
+  exit 1
+fi
+
+# Check if the PYFILE exists
+if [ ! -f "$PYFILE" ]; then
+  echo "File $PYFILE does not exist."
+  exit 1
+fi
+
+# Extract the base filename without extension
+BASENAME=$(basename "$PYFILE" .py)
+
+# Compile the Python script in the same directory
+python3 -m py_compile "$PYFILE"
+
+# Check if compilation was successful
+if [ $? -eq 0 ]; then
+  # Rename the compiled file to match the desired format
+  mv "${BASENAME}.cpython-*.pyc" "${BASENAME}c.pyc"
+  echo "Compiling $PYFILE ..."
+else
+  echo "Compilation failed for $PYFILE."
+fi
