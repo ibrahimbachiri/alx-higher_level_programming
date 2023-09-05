@@ -11,9 +11,9 @@ def uppercase(str):
             # Add other characters to the result string as they are
             result += char
     
-    print(result)
+    return result
 
 # Test cases
 if __name__ == "__main__":
-    uppercase("best")
-    uppercase("Best School 98 Battery street")
+    print("{}".format(uppercase("best")))
+    print("{}".format(uppercase("Best School 98 Battery street")))
