@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 
-def uppercase(str):
+def uppercase(s):
     result = ""
-    for char in str:
+    for char in s:
         if 'a' <= char <= 'z':
             # Convert lowercase character to uppercase using ASCII values
             uppercase_char = chr(ord(char) - ord('a') + ord('A'))
@@ -15,5 +15,9 @@ def uppercase(str):
 
 # Test cases
 if __name__ == "__main__":
-    print("{}".format(uppercase("best")))
-    print("{}".format(uppercase("Best School 98 Battery street")))
+    print("{}".format(uppercase("holberton")))
+    print("{}".format(uppercase("Holberton School")))
+    print("{}".format(uppercase("Holberton School, 98 battery street")))
+    print("{}".format(uppercase("")))
+    print("{}".format(uppercase("98")))
+    print("{}".format(uppercase("z")))
