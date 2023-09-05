@@ -6,4 +6,4 @@ for i in range(ord('z'), ord('A') - 1, -1):
     else:
         print("{}".format(chr(i - 32)), end='')
 
-print()  # Add a newline character at the end
+print()
