@@ -6,7 +6,6 @@ def remove_char_at(str, n):
     return str[:n] + str[n+1:]
 
 if __name__ == "__main__":
-
     print(remove_char_at("Chicago", 3))
     print(remove_char_at("Chicago", 15))
     print(remove_char_at("", 4))
