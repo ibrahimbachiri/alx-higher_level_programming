@@ -5,6 +5,8 @@ def print_last_digit(number):
     print(last_digit, end='')  # Print the last digit without a newline
     return last_digit
 
+# Two blank lines here
+
 # Test cases
 if __name__ == "__main__":
     print_last_digit(98)
