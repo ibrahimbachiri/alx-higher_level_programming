@@ -1,0 +1,8 @@
+#!/usr/bin/env python3
+from 7-islower.py import 7-islower.py
+
+print("a is {}".format("lower" if 7-islower.py("a") else "upper"))
+print("H is {}".format("lower" if 7-islower.py("H") else "upper"))
+print("A is {}".format("lower" if 7-islower.py("A") else "upper"))
+print("3 is {}".format("lower" if 7-islower.py("3") else "upper"))
+print("g is {}".format("lower" if 7-islower.py("g") else "upper"))
