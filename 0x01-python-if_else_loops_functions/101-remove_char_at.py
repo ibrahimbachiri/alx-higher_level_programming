@@ -6,8 +6,8 @@ def remove_char_at(str, n):
 
 # Test the remove_char_at function
 if __name__ == "__main__":
-    print(remove_char_at("Best School", 3))
-    print(remove_char_at("Chicago", 2))
-    print(remove_char_at("C is fun!", 0))
-    print(remove_char_at("School", 10))
-    print(remove_char_at("Python", -2))
+    print(remove_char_at("Chicago", 3))  # Correct output - case: remove_char_at("Chicago", 3)
+    print(remove_char_at("Chicago", 15))  # Correct output - case: remove_char_at("Chicago", 15)
+    print(remove_char_at("", 4))  # Correct output - case: remove_char_at("", 4)
+    print(remove_char_at("Chicago", -3))  # Correct output - case: remove_char_at("Chicago", -3)
+    print(remove_char_at("Chicago", 0))  # Correct output - case: remove_char_at("Chicago", 0)
