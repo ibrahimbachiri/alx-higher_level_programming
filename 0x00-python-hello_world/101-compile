@@ -1,4 +1,5 @@
 #!/bin/bash
+
 PYFILE="$1"
 PYCFILE="${PYFILE%.py}.pyc"
 
