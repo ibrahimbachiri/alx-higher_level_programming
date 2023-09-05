@@ -1,4 +1,4 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
 
 def uppercase(str):
     result = ""
@@ -11,9 +11,9 @@ def uppercase(str):
             # Add other characters to the result string as they are
             result += char
     
-    return result
+    print(result)
 
 # Test cases
 if __name__ == "__main__":
-    print("{}".format(uppercase("best")))
-    print("{}".format(uppercase("Best School 98 Battery street")))
+    uppercase("best")
+    uppercase("Best School 98 Battery street")
