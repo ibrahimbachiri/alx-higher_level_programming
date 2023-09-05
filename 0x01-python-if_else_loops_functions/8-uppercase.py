@@ -15,5 +15,5 @@ def uppercase(str):
 
 # Test cases
 if __name__ == "__main__":
-    print(uppercase("best"))
-    print(uppercase("Best School 98 Battery street"))
+    print("{}".format(uppercase("best")))
+    print("{}".format(uppercase("Best School 98 Battery street")))
