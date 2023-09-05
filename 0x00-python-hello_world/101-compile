@@ -1,9 +1,9 @@
 #!/bin/bash
-PYFILE="$PYFILE"
+PYFILE="$1"
 PYCFILE="${PYFILE%.py}.pyc"
 
 if [ -z "$PYFILE" ]; then
-    echo "PYFILE environment variable is not set."
+    echo "PYFILE is not provided as an argument."
     exit 1
 fi
 
