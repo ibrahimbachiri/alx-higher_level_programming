@@ -15,4 +15,3 @@ if __name__ == "__main__":
     
     print(new_list)
     print(my_list)
-
