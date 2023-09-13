@@ -3,6 +3,7 @@ def weight_average(my_list=[]):
     if not my_list:
         return 0.0
 
+    
     # Initialize variables to store the sum of products and the sum of weights
     sum_products = 0
     sum_weights = 0
