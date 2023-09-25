@@ -21,6 +21,7 @@ def list_division(my_list_1, my_list_2, list_length):
             result.append(div)
     return result
 
+
 if __name__ == "__main__":
     my_l_1 = [10, 8, 4]
     my_l_2 = [2, 4, 4]
