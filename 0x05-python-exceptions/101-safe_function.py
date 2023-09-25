@@ -19,12 +19,12 @@ if __name__ == "__main__":
     result = safe_function(my_div, 10, 0)
     print("result of my_div: {}".format(result))
 
-    def print_list(my_list, len):
+    def print_list(my_list, length):
         i = 0
-        while i < len:
+        while i < length:
             print(my_list[i])
             i += 1
-        return len
+        return length
 
     result = safe_function(print_list, [1, 2, 3, 4], 10)
     print("result of print_list: {}".format(result))
