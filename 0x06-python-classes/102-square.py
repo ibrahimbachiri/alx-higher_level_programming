@@ -66,4 +66,3 @@ if __name__ == "__main__":
         print("Square 5 > Square 6")
     if s_5 >= s_6:
         print("Square 5 >= Square 6")
-
