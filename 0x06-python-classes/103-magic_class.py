@@ -1,3 +1,7 @@
+#!/usr/bin/python3
+"""import Math."""
+
+
 import math
 """Represent a class."""
 
@@ -13,10 +17,10 @@ class MagicClass:
         else:
             self.radius = float(radius)
             self.__radius = float(radius)
-
+    """Define area."""
     def area(self):
         return self.__radius ** 2 * math.pi
-
+    """Define self."""
     def circumference(self):
         return 2 * math.pi * self.__radius
 
