@@ -4,6 +4,7 @@ import math
 
 
 class MagicClass:
+    """Define a self."""
     def __init__(self, radius=0):
         self.radius = 0
         self.__radius = 0
