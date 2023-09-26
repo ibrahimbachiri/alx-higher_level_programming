@@ -32,7 +32,7 @@ class Node:
             raise TypeError("next_node must be a Node object")
         self.__next_node = value
 
-
+"""Represent a class."""
 class SinglyLinkedList:
     """Define a self."""
     def __init__(self):
