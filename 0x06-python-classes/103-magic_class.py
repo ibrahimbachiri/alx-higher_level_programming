@@ -1,4 +1,7 @@
+#!/usr/bin/python3
 import math
+"""Represent a class."""
+
 
 class MagicClass:
     def __init__(self, radius=0):
