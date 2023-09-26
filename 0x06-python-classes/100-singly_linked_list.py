@@ -1,4 +1,9 @@
+#!/usr/bin/python3
+"""Represent a node."""
+
+
 class Node:
+    """Define a data."""
     def __init__(self, data, next_node=None):
         self.data = data
         self.next_node = next_node
