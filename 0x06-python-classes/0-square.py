@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-""" represent a class"""
+""" represent a class."""
+
 
 class Square:
-    """defines no body"""
     pass
