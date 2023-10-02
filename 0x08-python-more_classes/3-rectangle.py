@@ -2,8 +2,9 @@
 """Represent a class."""
 
 
-class Rectangle:
+class Rectangle:    
     """Define a Rectangle."""
+
     
     def __init__(self, width=0, height=0):
         self.__width = width
