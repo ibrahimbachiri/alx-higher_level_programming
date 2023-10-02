@@ -4,6 +4,7 @@
 
 class Rectangle:
     """string represent a class."""
+
     
     number_of_instances = 0
 
