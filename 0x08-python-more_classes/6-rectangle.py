@@ -4,7 +4,7 @@
 
 class Rectangle:
     number_of_instances = 0
-    
+    """Define a init."""
     def __init__(self, width=0, height=0):
         self.width = width
         self.height = height
