@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 import sys
+"""Define a is_safe."""
 
 def is_safe(board, row, col, N):
     # Check the left side of the current row
