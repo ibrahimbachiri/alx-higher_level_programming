@@ -4,5 +4,6 @@
 
 class LockedClass:
     """Define a lookedclass."""
+
     
     __slots__ = ("first_name",)
