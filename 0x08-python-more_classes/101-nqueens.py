@@ -3,6 +3,7 @@
 
 
 import sys
+"""Define is_safe."""
 
 def is_safe(board, row, col, n):
     for i in range(col):
