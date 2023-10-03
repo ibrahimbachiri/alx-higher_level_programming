@@ -4,7 +4,7 @@
 
 class Rectangle:
     """Define a class."""
-
+    
     def __init__(self, width=0, height=0):
         self.__width = width
         self.__height = height
@@ -32,3 +32,14 @@ class Rectangle:
         elif value < 0:
             raise ValueError("height must be >= 0")
         self.__height = value
+
+    def dict(self):
+        return {'width': self.width, 'height': self.height}
+
+
+# Example usage:
+if __name__ == "__main__":
+    myrectangle = Rectangle(2, 4)
+    print("Width:", myrectangle.width)
+    print("Height:", myrectangle.height)
+    print("Dictionary:", myrectangle.dict())

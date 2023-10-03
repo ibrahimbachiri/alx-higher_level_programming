@@ -1,0 +1,30 @@
+# tests/3-say_my_name.txt
+
+# Import the say_my_name function
+>>> from 3-say_my_name import say_my_name
+
+# Test case 1: Print the full name "John Smith"
+>>> say_my_name("John", "Smith")
+My name is John Smith
+
+# Test case 2: Print the full name "Walter White"
+>>> say_my_name("Walter", "White")
+My name is Walter White
+
+# Test case 3: Print the first name only "Bob"
+>>> say_my_name("Bob")
+My name is Bob
+
+# Test case 4: Invalid first name (integer)
+>>> try:
+...     say_my_name(12, "White")
+... except TypeError as e:
+...     str(e)  # Check the error message
+'first_name must be a string'
+
+# Test case 5: Invalid last name (integer)
+>>> try:
+...     say_my_name("John", 42)
+... except TypeError as e:
+...     str(e)  # Check the error message
+'last_name must be a string'
