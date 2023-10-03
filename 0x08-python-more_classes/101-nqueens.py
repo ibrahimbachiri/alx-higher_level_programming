@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""import sys."""
+
+
 import sys
 
 def is_safe(board, row, col, n):
