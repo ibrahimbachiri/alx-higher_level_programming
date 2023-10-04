@@ -1,4 +1,7 @@
 #!/usr/bin/python3
+"""Represent a matrix."""
+
+
 def matrix_mul(m_a, m_b):
     if not isinstance(m_a, list) or not isinstance(m_b, list):
         raise TypeError("m_a must be a list or m_b must be a list")
