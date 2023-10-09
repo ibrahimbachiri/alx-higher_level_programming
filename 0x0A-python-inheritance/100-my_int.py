@@ -3,8 +3,8 @@
 
 
 class MyInt(int):
-    """class that inherits from int"""
 
+    """Define a value."""
     def __init__(self, value):
 
         super().__init__()
