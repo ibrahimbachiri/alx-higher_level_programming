@@ -5,7 +5,7 @@
 def lookup(obj):
     return dir(obj)
 
-    """Definition of a class."""
+"""Definition of a class."""
 class MyClass1(object):
     pass
 
@@ -15,6 +15,7 @@ class MyClass2(object):
 
 def my_meth(self):
     pass
+
 print(lookup(MyClass1))
 print(lookup(MyClass2))
 print(lookup(int))                            
