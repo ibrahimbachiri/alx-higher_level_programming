@@ -13,6 +13,9 @@ def add_attribute(obj, attribute, value):
         raise TypeError("can't add new attribute")
 
 if __name__ == "__main__":
+    """Represent a class."""
+
+
     class MyClass():
         pass
 
