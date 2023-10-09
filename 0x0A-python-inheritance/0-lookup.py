@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 """Definition of an object."""
 
+
 def lookup(obj):
     return dir(obj)
 
