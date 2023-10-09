@@ -1,8 +1,10 @@
 #!/usr/bin/python3
-
-
 """Define an attribute."""
+
+
 def add_attribute(obj, attribute, value):
+    """Define an attribute."""
+
     if not hasattr(obj, attribute):
 
         setattr(obj, attribute, value)
