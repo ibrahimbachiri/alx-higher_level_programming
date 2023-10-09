@@ -1,0 +1,13 @@
+ass MyInt(int):
+        def __init__(self, value):
+                    super().__init__()
+                            self.value = value
+
+                                def __eq__(self, other):
+                                            # Invert the equality operator
+                                                    return self.value != other
+
+                                                    def __ne__(self, other):
+                                                                # Invert the inequality operator
+                                                                        return self.value == other
+                                                                    
