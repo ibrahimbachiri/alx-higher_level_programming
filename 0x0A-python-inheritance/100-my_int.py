@@ -13,10 +13,8 @@ class MyInt(int):
 
 def __eq__(self, other):
     """Define a self."""
-
         return self.value != other
 
 def __ne__(self, other):
     """Define other."""
-
         return self.value == other                                                
