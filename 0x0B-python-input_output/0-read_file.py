@@ -3,9 +3,6 @@
 
 
 def read_file(filename=""):
-    with open(filename,'r', encoding='utf-8') as file:
-        for line in file:
-            print(line, end='')
-
-if __name__ == "__main__":
-    read_file("my_file_0.txt")
+    """reads filename with utf-8"""
+    with open(filename, encoding='utf-8') as f:
+            print(f.read(), end='')
