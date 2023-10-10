@@ -1,38 +1,13 @@
 #!/usr/bin/python3
+'''module for lookup method'''
 
 
 def lookup(obj):
-    """
-    Retrieve and return the list of attributes and methodes of an object.
+    '''looks up object attributes and methods.
     Args:
-        obj: The object to look up.
+        obj (object): the object to list.
 
     Returns:
-        list: A list of strings containing attribute and method names.
-    """
+            list: the list of attributes.
+    '''
     return dir(obj)
-
-class MyClass1(object):
-    """
-    Definition of MyClass1.
-
-    This is a simple class with no attributes or methods.
-    """
-    pass
-
-class MyClass2(object):
-    """
-    Definition of Myclass2.
-
-    This class has an attribute 'my_attr1' and a method 'my_meth'.
-    """
-
-    my_attr1 = 3
-
-def my_meth(self):
-    """A placeholder method."""
-    pass
-
-print(lookup(MyClass1))
-print(lookup(MyClass2))
-print(lookup(int))                            
