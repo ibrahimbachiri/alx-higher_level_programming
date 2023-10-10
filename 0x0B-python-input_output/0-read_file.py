@@ -1,12 +1,12 @@
 #!/usr/bin/python3
-"""Define a functioo that reads."""
-
+"""
+write a function that reads a text file (UTF8)
+and prints it to stdout
+."""
 
 
 def read_file(filename=""):
-    with open(filename, mode='r', encoding='utf-8') as file:
-        for line in file:
-            print(line, end='')i
-
-if __name__ == "__main__":
-    read_file("my_file_0.txt")
+    with open(filename,'r', encoding='utf-8') as f:
+        for line in f:
+            print(line, end='')
+    f.close()
