@@ -1,8 +1,5 @@
 #!/usr/bin/python3
-"""
-write a function that reads a text file (UTF8)
-and prints it to stdout
-."""
+""" Definition of a fle."""
 
 
 def read_file(filename=""):
