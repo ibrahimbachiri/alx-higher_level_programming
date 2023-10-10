@@ -1,30 +1,16 @@
 #!/usr/bin/python3
-"""Define an attribute."""
+"""Defines an attribute."""
 
 
-def add_attribute(obj, attribute, value):
-    """Define an attribute."""
-
-    if not hasattr(obj, attribute):
-
-        setattr(obj, attribute, value)
-
-    else:
-        raise TypeError("can't add new attribute")
-
-if __name__ == "__main__":
-
-    """Represent a class."""
-    class MyClass():
-        pass
-
-        mc = MyClass()
-        add_attribute(mc, "name", "John")
-        print(mc.name)
-
-    try:
-        a = "My String"
-        add_attribute(a, "name", "Bob")
-        print(a.name)
-    except Exception as e:
-        print("[{}] {}".format(e.__class__.__name__, e))
+def add_attribute(obj, att, value):
+    """Add a new attribute to an object if possible.
+    Args:
+        obj (any): the object to add an attribute to.
+        att (strf): the name of the attribute to add to obj.
+        value (any): the value of att.
+    Raises:
+        typeError: if the attribute cannot be added.
+    """
+    if not hasattr(obj,"__dict__"):
+        raise typeError("can't add new attribute")
+    setattr(obj,att,value)
