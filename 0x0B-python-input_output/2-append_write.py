@@ -4,6 +4,7 @@
 
 import json
 
-def to_join_string(my_obj):
+
+def to_json_string(my_obj):
     """returns json representation of an object"""
     return json.dumps(my_obj)
