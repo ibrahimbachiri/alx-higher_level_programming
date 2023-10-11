@@ -1,36 +1,33 @@
-from sys import stdin
+#!/usr/bin/python3
+'Log Parsing'
+import sys
 
-status_codes = {
-        '200':0,
-        '3O1':0,
-        '400':0,
-        '401':0,
-        '403':0,
-        '404':0,
-        '405':0,
-        '500':0,
-        }
-total_size = i = 0
-
-def printer():
-    '''this function prints the statistic '''
-    print(f'file_size:(total_size)')
-    for key, value >0:
-        if value > 0:
-            print('(:à): (:d)'.format(key,value))
-
+status_list = [200, 301, 400, 401, 403, 404, 405, 500]
 try:
-    for line in stdin:
-        aplitted_line= line.split()
-        if len(aplitted_line) >2:
-            status = aplitted_line[-2]
-            total_size += int(aplitted_line[-1])
-            if status in status_codes:
-                status_codes[status]+=1
-        i+=1
-        
-        if i % 10 ==0:
-            printer()
-    printer()
-except keyboardinginterrupt as e:
-    printer()
+    total_size = 0
+    final_list = []
+    for index, line in enumerate(sys.stdin, 1):
+        if line:
+            line_split = line.split()
+        if len(line_split) > 2:
+            if line_split[-1].isnumeric() and line_split[-2].isnumeric():
+                size = line_split[-1]
+                status = line_split[-2]
+                total_size += int(size)
+        if len(status) > 0 and int(status) in status_list:
+            final_list.append(int(status))
+    if index % 10 == 0:
+        print('File size: {}'.format(total_size))
+        for i in status_list:
+            if i in final_list:
+                status_count = final_list.count(i)
+                print("{}: {}".format(i, status_count))
+except Exception:
+    pass
+
+finally:
+    print('File size: {}'.format(total_size))
+    for i in status_list:
+        if i in final_list:
+            status_count = final_list.count(i)
+            print("{}: {}".format(i, status_count))
