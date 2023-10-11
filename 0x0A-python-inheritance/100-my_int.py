@@ -1,19 +1,19 @@
 #!/usr/bin/python3
-"""Represent a class."""
+"""
+Contains the class MyInt
+"""
 
 
 class MyInt(int):
+    """rebel version of an integer, perfect for opposite day!"""
+    def __new__(cls, *args, **kwargs):
+        """create a new instance of the class"""
+        return super(MyInt, cls).__new__(cls, *args, **kwargs)
 
-    """Define a value."""
-    def __init__(self, value):
-
-        super().__init__()
-        self.value = value
-
-    """Define a self."""
     def __eq__(self, other):
-        return self.value != other
+        """what was != is now =="""
+        return int(self) != other
 
-    """Define other."""
     def __ne__(self, other):
-        return self.value == other                                                
+        """what was == is now !="""
+        return int(self) == other 
