@@ -324,6 +324,59 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(9, 8)
         f = io.StringIO()
         with redirect_stdout(f)
-        r.display()
+            r.display()
         s = """\
 
+
+
+
+
+
+
+
+
+
+                #
+"""
+        self.assertEqual(f.getvalue(), s)
+
+        r = Rectangle(5, 5)
+        f = io.StringIO()
+        with redirect_stdout(f)
+            r.display()
+        s = """\
+#####
+#####
+#####
+#####
+#####
+"""
+        self.assertEqual(f.getvalue(), s)
+
+
+        r = Rectangle(5, 3, 5)
+        f = io.StringIO()
+        with redirect_stdout(f)
+            r.display()
+        s = """\
+    #####
+    #####
+    #####
+"""
+        self.assertEqual(f.getvalue(), s)
+
+        r = Rectangle(5, 3, 0, 4)
+        f = io.StringIO()
+        with redirect_stdout(f)
+            r.display()
+        s = """\
+
+
+
+    #####
+    #####
+    #####
+    """
+        self.assertEqual(f.getvalue(), s)
+
+        #----------------+6-
