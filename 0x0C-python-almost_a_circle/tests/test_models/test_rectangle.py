@@ -124,4 +124,56 @@ class TestRectangle(unittest.TestCase):
                 '_Rectangle__x':15, '_Rectangle__y': 20, 'id': 1}
         self.assertEqual(r.__dict__, d)
 
+        r = Rectangle(5, 10, 15, 20, 98)
+        d = {'_Rectangle__height': 10, '_Rectangle__width': 5,
+                '_Rectangle__x':15, '_Rectangle__y': 20, 'id': 98}
+        self.assertEqual(r.__dict__, d)
+
+    def test_D_instantiation_keyword(self):
+        '''Tests.'''
+        r = Rectangle(100, 200, id=421, y=99, x=101)
+        d = {'_Rectangle__height': 200, '_Rectangle__width': 100,
+                '_Rectangle__x':101, '_Rectangle__y': 99, 'id': 421}
+        self.assertEqual(r.__dict__, d)
+
+    def test_E_id_inherited(self):
+        '''Tests.'''
+        Base.Base_nb_objects = 98
+        r = Rectangle(2, 4)
+        self.assertEqual(r.id, 99)
+
+    def test_F_properties(self):
+        '''tests.'''
+        r = Rectangle(5, 9)
+        r.width = 100
+        r.height = 101
+        r.x = 102
+        r.y = 103
+        d = {'_Rectangle__height': 101, '_Rectangle__width':100,
+                '_Rectanle__x': 102, '_Rectangle__y': 103, 'id':1}
+        self.assertEqual(r.__dict__, d)
+        self.assertEqual(r.width, 100)
+        self.assertEqual(r.height, 101)
+        self.assertEqual(r.x, 102)
+        self.assertEqual(r.y, 103)
+
+    #--------------tests for #3 ----------------------
+
+    def invalid_types(self):
+        '''Returns.'''
+        t = (3.14, -1.1, float('int'), float('-int'), True, "str", (2,),
+                [4], {5}, {6: 7}, None)
+        return t
+
+    def test_G_validate_type(self):
+        '''tests.'''
+        r = Rectangle(1, 2)
+        attributes = ["x", "y", "width", "height"]
+        for attribute in attributes:
+            s = "{} must be an integer".format(attribute)
+            for invalid_type in self.invalid_types():
+                with self.assertRaises(TypeError) as e:
+                    setattr(r, attribute, invalid_type)
+                self.assertEqual(str(e.exception), s)
+
 
