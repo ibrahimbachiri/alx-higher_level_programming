@@ -379,4 +379,95 @@ class TestRectangle(unittest.TestCase):
     """
         self.assertEqual(f.getvalue(), s)
 
-        #----------------+6-
+        #----------------- #6 --------------
+        def test_K_str_no_args(self):
+            '''Tests __str__() signature.'''
+            r = Rectangle((5, 2)
+            with self.assertRaises(TypeError) as e:
+                    Rectangle.__str__()
+            s = "__str__() missing 1"
+            self.assertEqual(str(e.exception), s)
+
+        def test_K_str(self):
+            '''Tests __str__() signature.'''
+            r = Rectangle((5, 2)
+            s = '[Rectangle] (1) 0/0 - 5/2'
+            self.assertEqual(str(r), s)
+            r = Rectangle(1,1,1)
+            s = '[Rectangle] (2) 1/0 - 1/1'
+            self.assertEqual(str(r), s)
+            r = Rectangle((3, 4, 5, 6)
+            s = '[Rectangle] (2) 5/6 - 3/4'
+            self.assertEqual(str(r), s)
+
+            Base._Base__nb_objects = 0
+            r1 = Rectangle(4, 6, 2, 1, 12)
+            self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/6")
+
+            r2 = Rectangle(5,5,1)
+            self.assertEqual(str(r2), "[Rectangle] (1) 1/0 - 5/5")
+
+            #------------Tests for #8 & #9 ------------
+        def test_L_update_no_args(self):
+            '''Tests update().'''
+            r = Rectangle(5, 2)
+            with self.assertRaises(TypeError) as e:
+                Rectangle.update()
+            s = "update()."
+            self.assertRaises(str(e.exception), s)
+
+            d = r.__dict__.copy()
+            r.update()
+            self.assertEqual(r.__dict__, d)
+
+        def test_L_update_args(self):
+            '''Tests update().'''
+            r = Rectangle(5, 2)
+            d = r.__dict__.copy()
+
+
+            r.update(10)
+            d["id"]= 10
+            self.assertEqual(r.__dict__, d)
+
+            r.update(10, 5)
+            d["_Rectangle__width"]= 5
+            self.assertEqual(r.__dict__, d)
+
+            r.update(10, 5, 17)
+            d["_Rectangle__height"]= 17
+            self.assertEqual(r.__dict__, d)
+
+            r.update(10, 5, 17, 20)
+            d["_Rectangle__x"]= 20
+            self.assertEqual(r.__dict__, d)
+
+            r.update(10, 5, 17, 20, 25)
+            d["_Rectangle__y"]= 25
+            self.assertEqual(r.__dict__, d)
+
+        def test_L_update_args_bad(self):
+            '''test update.'''
+            r = Rectangle(5, )
+            d = r.__dict__.copy()
+
+            r.update(10, 5)
+            d["id"]= 10
+            self.assertEqual(r.__dict__, d)
+
+            with self.assertRaises(ValueError) as e:
+                r.update(10, -5)
+            s = "width must be > 0"
+            self.assertEqual(str(e.exception), s)
+
+            with self.assertRaises(ValueError) as e:
+                r.update(10, 5, -17)
+            s = "width must be > 0"
+            self.assertEqual(str(e.exception), s)
+
+            with self.assertRaises(ValueError) as e:
+                r.update(10, 5, 17, -20)
+            s = "x  must be >= 0"
+            self.assertEqual(str(e.exception), s)
+
+
