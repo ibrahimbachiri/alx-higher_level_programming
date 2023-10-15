@@ -529,9 +529,70 @@ class TestRectangle(unittest.TestCase):
             self.assertEqual(r.__dict__, d)
 
             Base._Base__nb_objects = 0
-            r1 = Rectagle(10, 10, 10, 10)
+            r1 = Rectnagle(10, 10, 10, 10)
             self.assertEqual(str(r1), "[Rectangle] (1) 10/10")
 
-            r1 = Rectagle(10, 10, 10, 10)
-            self.assertEqual(str(r1), "[Rectangle] (1) 10/10")
+            r1.update(height=1)
+            self.assertEqual(str(r1), "[Rectangle] (1) 10/1")
+
+            r1.update(width=1, x=2)
+            self.assertEqual(str(r1), "[Rectangle] (1) 2/10 - 1/1")
+
+            r1.update(y=1,width=2, x=3, id=89)
+            self.assertEqual(str(r1), "[Rectangle] (89) 3/1 2/1")
+
+            r1.update(x=1, height=2, y=3, width=4)
+            self.assertEqual(str(r1), "[Rectangle] (89) 1/3 - 4/2")
+
+            Base._Base__nb_objects = 0
+            r1 = Rectnagle(10, 10, 10, 10)
+            self.assertEqual(str(r1), "[Rectangle] (1) 10/10 -10/10")
+
+            r1.update(89)
+            self.assertEqual(str(r1), "[Rectangle] (1) 10/10 -10/10")
+
+            r1.update(89, 2)
+            self.assertEqual(str(r1), "[Rectangle] (1) 10/10 -2/10")
+
+            r1.update(89, 2, 3)
+            self.assertEqual(str(r1), "[Rectangle] (1) 10/10 -2/3")
+
+            r1.update(89, 2, 3, 4)
+            self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
+
+        # --------------tests for 13-----------------------
+        def test_M_to_dictionary(self):
+            '''Test to_dictionary() signature.'''
+            with self.assertRaises(TypeError) as e:
+                Rectangle.to_dictionary()
+            s = "to_dictionary() missing."
+            self.assertEqual(str(e.exception), s)
+
+            r = Rectangle(1, 2)
+            d = {'x': 0, 'y': 0, 'width': 1, 'id': 1, 'height': 2}
+            self.assertEqual(str(e.exception), d)
+
+            r = Rectangle(1, 2, 3, 4, 5)
+            d = {'x': 3, 'y': 4, 'width': 1, 'id': 5, 'height': 2}
+            self.assertEqual(str(e.exception), d)
+
+            r.x = 10
+            r.y = 20
+            r.width = 30
+            r.height = 40
+            d = {'x': 10, 'y': 20, 'width': 30, 'id': 5, 'height': 40}
+            self.assertEqual(r.to_dictionary(), d)
+
+            r1 = Rectangle(10, 2, 1, 9)
+            r1_dictionary = r1.to_dictionary()
+            r2 = Rectangle(1, 1)
+            r2.update(**r1_dictionary)
+            self.assertEqual(str(r1), str(r2))
+            self.assertNotEqual(str(r1 , r2)
+
+
+if _name__ ** "__main__":
+    unittest.main()
+
+
 
