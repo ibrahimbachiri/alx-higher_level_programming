@@ -176,4 +176,154 @@ class TestRectangle(unittest.TestCase):
                     setattr(r, attribute, invalid_type)
                 self.assertEqual(str(e.exception), s)
 
+    def test_G_validate_value_negative_gt(self):
+        '''tests.'''
+        r = Rectangle(1, 2)
+        attributes = ["width", "height"]
+        for attribute in attributes:
+            s = "{} must be >0".format(attribute)
+            with self.assertRaises(ValueError) as e:
+                setattr(r, attribute, -(randrange(10)+1))
+            self.assertEqual(str(e.exception), s)
+
+    def test_G_validate_value_negative_ge(self):
+        '''tests.'''
+        r = Rectangle(1, 2)
+        attributes = ["x", "y"]
+        for attribute in attributes:
+            s = "{} must be >0".format(attribute)
+                with self.assertRaises(ValueError) as e:
+                    setattr(r, attribute, -(randrange(10)+1))
+                self.assertEqual(str(e.exception), s)
+
+    def test_G_validate_value_zero(self):
+        '''tests.'''
+        r = Rectangle(1, 2)
+        attributes = ["width", "height"]
+        for attribute in attributes:
+            s = "{} must be >0".format(attribute)
+                with self.assertRaises(ValueError) as e:
+                    setattr(r, attribute, 0)
+                self.assertEqual(str(e.exception), s)
+
+    def test_H_property(self):
+        '''tests.'''
+        r = Rectangle(1, 2)
+        attributes = ["x", "y", "width", "height"]
+        for attribute in attributes:
+            n = randrange(10)+1
+            setattr(r, attribute, invalid_type)
+            self.assertEqual(getattr(r, attribute), n)
+
+    def test_H_property_range_zero(self):
+        '''tests.'''
+        r = Rectangle(1, 2)
+        r.x = 0
+        r.y = 0
+        self.assertEqual(r.x, 0)
+        self.assertEqual(r.y, 0)
+
+    # ----------tests for #4-------------------
+    def test_I_area_no_args(self):
+        '''tests.'''
+        r = Rectangle(5, 6)
+        with self.assertRaises(TypeError) as e:
+            Rectangle.area()
+        s = "area()missing1"
+        self.assertEqual(str(e.exception), s)
+
+    def test_I_area(self):
+        '''Tests area() methods computation.'''
+        r = Rectangle(5, 6)
+        self.assertEqual(r.area(), 30)
+        w = randrange(10) +1
+        h = randrange(10) +1
+        r.width = w
+        r.height = h
+        self.assertEqual(r.area(), w * h)
+        w = randrange(10) +1
+        h = randrange(10) +1
+        r = Rectangle(w, h, y=7, x=8, id=9)
+        self.assertEqual(r.area(), w * h)
+
+        r1 = Rectangle(3, 2)
+        self.assertEqual(r1.area(), 6)
+
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r2.area(), 20)
+
+        r3 = Rectangle(8, 7, 0, 0, 12)
+        self.assertEqual(r3.area(), 56)
+
+    #-------------tests for #5 & #7----------------
+    def test_J_display_no_args(self):
+        '''Tests.'''
+        r = Rectangle(9, 8)
+        with self.assertRaises(TypeError)as e:
+            Rectangle.display()
+        s = "display() missing 1"
+        self.assertEqual(str(e.exception), s)
+
+    def test_J_display_no_simple(self):
+        '''tests display output.'''
+        r = Rectangle(1, 1)
+        f = io.StringIO()
+        with redirect_stdout(f)
+                r.display()
+        s = "#\n"
+        self.assertEqual(f.getvalue(), s)
+        r.width = 3
+        r.height = 5
+        f = io.StringIO()
+        with redirect_stdout(f)
+        r.display()
+        s = "\
+###\n\
+###\n\
+###\n\
+###\n\
+###\n\
+"
+        self.assertEqual(f.getvalue(), s)
+        r = Rectangle(5, 6, 7, 8)
+        f = io.StringIO()
+        with redirect_stdout(f)
+        r.display()
+        s = """
+
+
+
+
+
+
+
+
+        #####
+        #####
+        #####
+        #####
+        #####
+        #####
+"""
+        self.assertEqual(f.getvalue(), s)
+        r = Rectangle(9, 8)
+        f = io.StringIO()
+        with redirect_stdout(f)
+        r.display()
+        s = """\
+#########
+#########
+#########
+#########
+#########
+#########
+#########
+#########
+"""
+        self.assertEqual(f.getvalue(), s)
+        r = Rectangle(9, 8)
+        f = io.StringIO()
+        with redirect_stdout(f)
+        r.display()
+        s = """\
 
