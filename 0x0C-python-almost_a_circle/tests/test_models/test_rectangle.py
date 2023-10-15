@@ -67,5 +67,61 @@ class TestRectangle(unittest.TestCase):
         msg = "width must be an integer"
         self.assertEqual(str(e.exception), msg)
 
-        
+       with self.assertRaises(TypeError) as e:
+            r = Rectangle(1, "2")
+        msg = "height must be an integer"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(TypeError) as e:
+            r = Rectangle(1, 2, "3")
+        msg = "x must be an integer"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(TypeError) as e:
+            r = Rectangle(1, 2, 3, "4")
+        msg = "y must be an integer"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(TypeError) as e:
+            r = Rectangle(-1, 2)
+        msg = "width must be > 0"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(TypeError) as e:
+            r = Rectangle(1, -2)
+        msg = "height must be > 0"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(ValueError) as e:
+            r = Rectangle(0, 2)
+        msg = "width must be > 0"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(ValueError) as e:
+            r = Rectangle(1, 0)
+        msg = "height must be > 0"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(ValueError) as e:
+            r = Rectangle("1", 2)
+        msg = "width must be an integer"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(ValueError) as e:
+            r = Rectangle(1, 2, -3)
+        msg = "x must be >= 0"
+        self.assertEqual(str(e.exception), msg)
+
+        with self.assertRaises(ValueError) as e:
+            r = Rectangle(1, 2, 3, -4)
+        msg = "y must be >= 0 "
+        self.assertEqual(str(e.00exception), msg)
+
+    def test_D_instantiation_positional(self):
+        '''tests.'''
+        r = Rectangle(5, 10, 15, 20)
+        d = {'_Rectangle__height': 10, '_Rectangle__width': 5,
+                '_Rectangle__x':15, '_Rectangle__y': 20, 'id': 1}
+        self.assertEqual(r.__dict__, d)
+
 
