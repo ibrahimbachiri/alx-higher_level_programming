@@ -470,4 +470,68 @@ class TestRectangle(unittest.TestCase):
             s = "x  must be >= 0"
             self.assertEqual(str(e.exception), s)
 
+            with self.assertRaises(ValueError) as e:
+                r.update(10, -5)
+            s = "y must be >= 0"
+            self.assertEqual(str(e.exception), s)
+
+    def test_L_update_kwargs(self):
+            '''test update.'''
+            r = Rectangle(5, 2)
+            d = r.__dict__.copy()
+
+            r.update(id=10)
+            d["id"]= 10
+            self.assertEqual(r.__dict__, d)
+
+            r.update(width=5)
+            d["_Rectangle_width"]= 5
+            self.assertEqual(r.__dict__, d)
+
+            r.update(height=17)
+            d["_Rectangle_width"]= 17
+            self.assertEqual(r.__dict__, d)
+
+            r.update(x=20)
+            d["_Rectangle_x"]= 20
+            self.assertEqual(r.__dict__, d)
+
+            r.update(y=25)
+            d["_Rectangle_y"]= 25
+            self.assertEqual(r.__dict__, d)
+
+     def test_L_update_kwargs_2(self):
+            '''test update.'''
+            r = Rectangle(5, 2)
+            d = r.__dict__.copy()
+
+            r.update(id=10)
+            d["id"]= 10
+            self.assertEqual(r.__dict__, d)
+
+            r.update(id=10, width=5)
+            d["_Rectangle__width"]= 5
+            self.assertEqual(r.__dict__, d)
+
+            r.update(id=10, width=5, height=17)
+            d["_Rectangle__width"]= 17
+            self.assertEqual(r.__dict__, d)
+
+            r.update(id=10, width=5, height=17, x=20)
+            d["_Rectangle__x"]= 20
+            self.assertEqual(r.__dict__, d)
+
+            r.update(id=10, width=5, height=17, x=20, y=25)
+            d["_Rectangle__x"]= 25
+            self.assertEqual(r.__dict__, d)
+
+            r.update(y=25, id=10, height=17, x=20, width=5)
+            self.assertEqual(r.__dict__, d)
+
+            Base._Base__nb_objects = 0
+            r1 = Rectagle(10, 10, 10, 10)
+            self.assertEqual(str(r1), "[Rectangle] (1) 10/10")
+
+            r1 = Rectagle(10, 10, 10, 10)
+            self.assertEqual(str(r1), "[Rectangle] (1) 10/10")
 
