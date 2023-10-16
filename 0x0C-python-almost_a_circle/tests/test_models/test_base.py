@@ -66,7 +66,7 @@ class TestBase(unittest.TestCase):
         b = Base()
         self.assertEqual(getattr(Base, "_Base__nb_objects"), b.id)
 
-    def test_G_custom_id_str(self):
+    def test_G_custom_id_int(self):
         '''Tests custom int id.'''
         i = 98
         b = Base(i)
@@ -97,7 +97,7 @@ class TestBase(unittest.TestCase):
         d = [{'x': 101, 'y': 20123, 'width': 312321, 'id': 522244,
             'height': 34340}]
         self.assertEqual(len(Base.to_json_string(d)),
-                        len(str(d)))
+                        len(str0(d)))
         d = [{'x': 1, 'y': 2, 'width': 3, 'id': 4, 'height': 5}]
         self.assertEqual(len(Base.to_json_string(d)),
                         len(str(d)))
@@ -120,6 +120,7 @@ class TestBase(unittest.TestCase):
         d = [{}, {}]
         self.assertEqual(Base.to_json_string(d),
                         '[{], {}]')
+
         r1 = Rectangle(10, 7, 2, 8)
         dictionary = r1.to_dictionary()
         json_dictionary = Base.to_json_string([dictionary])
@@ -196,6 +197,7 @@ class TestBase(unittest.TestCase):
             list_out = Rectangle.from_json_string(
                 Rectangle.to_json_string(list_in))
             self.assertEqual(list_in, list_out)
+
     # --------------------Tests for #16 -------------------------
 def Test_I_save_to_file(self):
     '''Tests save_to_file()method.'''
