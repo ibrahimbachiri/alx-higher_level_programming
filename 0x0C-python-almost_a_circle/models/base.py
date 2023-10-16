@@ -1,14 +1,16 @@
 #!/usr/bin/python3
-'''modules.'''
+'''module for Base class.'''
+from json import dumps, loads
+import csv
 
 
 class Base:
-    '''Class Represent A Base.'''
+    '''A Representation A Base.'''
     
     _nb_objects = 0
 
-    def __init__(self, id = None):
-        '''constructor'''
+    def __init__(self, id=None):
+        '''constructor.'''
         if id is not None:
             self.id = id
         else:
@@ -117,6 +119,10 @@ class Base:
             t.left(90)
             t.forward(i.height)
             t.left(90)
+            t.forward(i.width)
+            t.left(90)
             t.forward(i.height)
             t.left(90)
             t.end_fill()
+
+        time.sleep(5)
