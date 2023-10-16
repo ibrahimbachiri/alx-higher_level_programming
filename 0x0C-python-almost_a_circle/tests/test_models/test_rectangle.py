@@ -4,7 +4,7 @@ import unittest
 from models.base import base
 from models.rectangle import Rectangle
 from random import randrange
-from contetlib import redirect_stdout
+from contextlib import redirect_stdout
 import io
 
 
@@ -193,7 +193,7 @@ class TestRectangle(unittest.TestCase):
         for attribute in attributes:
             s = "{} must be >0".format(attribute)
                 with self.assertRaises(ValueError) as e:
-                    setattr(r, attribute, -(randrange(10)+1))
+                    setattr(r, attribute, -(randrange(10) + 1))
                 self.assertEqual(str(e.exception), s)
 
     def test_G_validate_value_zero(self):
@@ -211,7 +211,7 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(1, 2)
         attributes = ["x", "y", "width", "height"]
         for attribute in attributes:
-            n = randrange(10)+1
+            n = randrange(10) + 1
             setattr(r, attribute, invalid_type)
             self.assertEqual(getattr(r, attribute), n)
 
@@ -241,8 +241,12 @@ class TestRectangle(unittest.TestCase):
         r.width = w
         r.height = h
         self.assertEqual(r.area(), w * h)
-        w = randrange(10) +1
-        h = randrange(10) +1
+        w = randrange(10) + 1
+        h = randrange(10) + 1
+        r = Rectangle(w, h, 7, 8, 9)
+        self.assertEqual(r.area(), w * h)
+        w = randrange(10) + 1
+        h = randrange(10) + 1
         r = Rectangle(w, h, y=7, x=8, id=9)
         self.assertEqual(r.area(), w * h)
 
@@ -276,7 +280,7 @@ class TestRectangle(unittest.TestCase):
         r.height = 5
         f = io.StringIO()
         with redirect_stdout(f)
-        r.display()
+            r.display()
         s = "\
 ###\n\
 ###\n\
@@ -288,7 +292,7 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(5, 6, 7, 8)
         f = io.StringIO()
         with redirect_stdout(f)
-        r.display()
+            r.display()
         s = """
 
 
@@ -309,7 +313,7 @@ class TestRectangle(unittest.TestCase):
         r = Rectangle(9, 8)
         f = io.StringIO()
         with redirect_stdout(f)
-        r.display()
+            r.display()
         s = """\
 #########
 #########
@@ -370,6 +374,7 @@ class TestRectangle(unittest.TestCase):
         with redirect_stdout(f)
             r.display()
         s = """\
+
 
 
 
@@ -448,10 +453,10 @@ class TestRectangle(unittest.TestCase):
 
         def test_L_update_args_bad(self):
             '''test update.'''
-            r = Rectangle(5, )
+            r = Rectangle(5, 2)
             d = r.__dict__.copy()
 
-            r.update(10, 5)
+            r.update(10)
             d["id"]= 10
             self.assertEqual(r.__dict__, d)
 
@@ -471,7 +476,7 @@ class TestRectangle(unittest.TestCase):
             self.assertEqual(str(e.exception), s)
 
             with self.assertRaises(ValueError) as e:
-                r.update(10, -5)
+                r.update(10, 5, 17, 20, -25)
             s = "y must be >= 0"
             self.assertEqual(str(e.exception), s)
 
@@ -560,6 +565,9 @@ class TestRectangle(unittest.TestCase):
             r1.update(89, 2, 3, 4)
             self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
 
+            r1.update(89, 2, 3, 4, 5)
+            self.assertEqual(str(r1), "[Rectangle] (89) 4/5 - 2/3")
+
         # --------------tests for 13-----------------------
         def test_M_to_dictionary(self):
             '''Test to_dictionary() signature.'''
@@ -593,6 +601,3 @@ class TestRectangle(unittest.TestCase):
 
 if _name__ ** "__main__":
     unittest.main()
-
-
-
