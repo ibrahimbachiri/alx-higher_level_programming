@@ -6,7 +6,7 @@ import csv
 
 class Base:
     '''A Representation A Base.'''
-    
+
     __nb_objects = 0
 
     def __init__(self, id=None):
@@ -49,12 +49,12 @@ class Base:
             new = Rectangle(1, 1)
         elif cls is Square:
             new = Square(1)
-    else:
-        new = None
-    new.update(**dicionary)
-    return new
+        else:
+            new = None
+        new.update(**dicionary)
+        return new
 
-    @clssmethod
+    @classmethod
     def loads_from_file(cls):
         '''Loads string from file and unjsonifies.'''
         from os import path
@@ -62,9 +62,9 @@ class Base:
         if not path.isfile(file):
             return []
         with open(file, "r", encoding="utf-8") as f:
-        return [cls.create(**d) for d in cls.from_json_string(f.read())]
+            return [cls.create(**d) for d in cls.from_json_string(f.read())]
 
-    @classmedthod
+    @classmethod
     def save_to_file_csv(cls, list_objs):
         '''saves object to csv file.'''
         from models.rectangle import Rectangle
@@ -72,14 +72,14 @@ class Base:
         if list_objs is not None:
             if cls is Rectngle:
                 list_objs = [[o.id, o.width, o.height, o.x, o.y]
-                            for o in list_objs]
+                        for o in list_objs]
             else:
                 list_objs = [[o.id, o.size, o.x, o.y]
-                    for o in list_objs]
+                        for o in list_objs]
         with open('{}.csv'.format(cls.__name__), 'W', newline='',
-            encoding='utf-8') as f:
-        writer = csv.writer(f)
-        writer.writerows(list_objs)
+                encoding='utf-8') as f:
+            writer = csv.writer(f)
+            writer.writerows(list_objs)
 
     @classmethod
     def load_from_file_csv(cls):
@@ -93,7 +93,7 @@ class Base:
             for row in reader:
                 row = [int(r) for r in row]
                 if cls is Rectangle:
-                    d = {"id": row[0], "width": row;[1], "height": row[2],
+                    d = {"id": row[0], "width": row[1], "height": row[2],
                         "x": row[3], "y": row[4]} 
                 else:
                     d = {"id": row[0], "size": row[1],
