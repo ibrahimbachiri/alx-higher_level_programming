@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-'''module Rectangle class.'''
+'''Module for Rectangle class.'''
 from models.base import Base
 
 
@@ -7,7 +7,7 @@ class Rectangle(Base):
     '''A Rectangle class.'''
 
     def __init__(self, width, height, x=0, y=0, id=None):
-        '''constructor.'''
+        '''Constructor.'''
         super().__init__(id)
         self.width = width
         self.height = height
@@ -16,29 +16,29 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        '''width of this rectangle.'''
+        '''Width of this rectangle.'''
         return self.__width
 
     @width.setter
     def width(self, value):
-        self.validate_integer("width", value, false)
+        self.validate_integer("width", value, False)
         self.__width = value
 
     @property
     def height(self):
-        '''height Rectangle.'''
+        '''Height of this rectangle.'''
         return self.__height
 
     @height.setter
     def height(self, value):
-        self.validate_integer("height", value, false)
+        self.validate_integer("height", value, False)
         self.__height = value
 
     @property
     def x(self):
-        '''x Rectangle.'''
-        return self. __x
-    
+        '''x of this rectangle.'''
+        return self.__x
+
     @x.setter
     def x(self, value):
         self.validate_integer("x", value)
@@ -46,7 +46,7 @@ class Rectangle(Base):
 
     @property
     def y(self):
-        '''y of Rectangle.'''
+        '''y of this rectangle.'''
         return self.__y
 
     @y.setter
@@ -55,7 +55,7 @@ class Rectangle(Base):
         self.__y = value
 
     def validate_integer(self, name, value, eq=True):
-        '''validating the value.'''
+        '''Method for validating the value.'''
         if type(value) != int:
             raise TypeError("{} must be an integer".format(name))
         if eq and value < 0:
@@ -63,24 +63,24 @@ class Rectangle(Base):
         elif not eq and value <= 0:
             raise ValueError("{} must be > 0".format(name))
 
-    def area(self);
-        '''Comutes area of rectangle.'''
+    def area(self):
+        '''Computes area of this rectangle.'''
         return self.width * self.height
 
     def display(self):
-        '''string of Rectangle.'''
+        '''Prints string representation of this rectangle.'''
         s = '\n' * self.y + \
             (' ' * self.x + '#' * self.width + '\n') * self.height
         print(s, end='')
 
     def __str__(self):
-        '''Return info about Rectangle.'''
+        '''Returns string info about this rectangle.'''
         return '[{}] ({}) {}/{} - {}/{}'.\
-                format(type(self).__name__, self.id, self.x, self.y, self.width,
-                        self.height)
+            format(type(self).__name__, self.id, self.x, self.y, self.width,
+                   self.height)
 
     def __update(self, id=None, width=None, height=None, x=None, y=None):
-        '''Internal way update attributes.'''
+        '''Internal method that updates instance attributes via */**args.'''
         if id is not None:
             self.id = id
         if width is not None:
@@ -93,7 +93,7 @@ class Rectangle(Base):
             self.y = y
 
     def update(self, *args, **kwargs):
-        '''updates instance attributes via no-keyword & keyword args.'''
+        '''Updates instance attributes via no-keyword & keyword args.'''
         # print(args, kwargs)
         if args:
             self.__update(*args)
@@ -101,6 +101,6 @@ class Rectangle(Base):
             self.__update(**kwargs)
 
     def to_dictionary(self):
-        '''Returns dictionary of class.'''
+        '''Returns dictionary representation of this class.'''
         return {"id": self.id, "width": self.__width, "height": self.__height,
                 "x": self.__x, "y": self.__y}
