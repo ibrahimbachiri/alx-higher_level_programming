@@ -16,7 +16,7 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        '''Width of this rectangle.'''
+        '''width of this rectangle.'''
         return self.__width
 
     @width.setter
@@ -36,7 +36,7 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        '''x of this rectangle.'''
+      '''x of this rectangle.'''
         return self.__x
 
     @x.setter
@@ -55,7 +55,7 @@ class Rectangle(Base):
         self.__y = value
 
     def validate_integer(self, name, value, eq=True):
-        '''Method for validating the value.'''
+        '''Methods for validating the value.'''
         if type(value) != int:
             raise TypeError("{} must be an integer".format(name))
         if eq and value < 0:
@@ -64,7 +64,7 @@ class Rectangle(Base):
             raise ValueError("{} must be > 0".format(name))
 
     def area(self):
-        '''Computes area of this rectangle.'''
+        '''Copmutes area of this rectangle.'''
         return self.width * self.height
 
     def display(self):
@@ -93,7 +93,7 @@ class Rectangle(Base):
             self.y = y
 
     def update(self, *args, **kwargs):
-        '''Updates instance attributes via no-keyword & keyword args.'''
+        ''' instance attributes via no-keyword & keyword args.'''
         # print(args, kwargs)
         if args:
             self.__update(*args)

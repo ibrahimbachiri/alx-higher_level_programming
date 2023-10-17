@@ -102,12 +102,12 @@ class Base:
         return ret
 
     @staticmethod
-    def draw(list_rectangle, list_squares):
+    def draw(list_rectangles, list_squares):
         import turtle
         import time
         from random import randrange
         turtle.Screen().colormode(255)
-        for i in  list_rectangle + list_squares:
+        for i in  list_rectangles + list_squares:
             t = turtle.Turtle()
             t.color((randrange(255), randrange(255), randrange(255)))
             t.pensize(1)
