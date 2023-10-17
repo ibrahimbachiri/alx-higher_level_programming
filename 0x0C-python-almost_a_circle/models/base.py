@@ -1,16 +1,16 @@
 #!/usr/bin/python3
-'''module for Base class.'''
+'''Module for Base class.'''
 from json import dumps, loads
 import csv
 
 
 class Base:
-    '''A Representation A Base.'''
+    '''A representation of the base of our OOP hierarchy.'''
 
     __nb_objects = 0
 
     def __init__(self, id=None):
-        '''constructor.'''
+        '''Constructor.'''
         if id is not None:
             self.id = id
         else:
@@ -37,7 +37,7 @@ class Base:
         '''Saves jsonified object to file.'''
         if list_objs is not None:
             list_objs = [o.to_dictionary() for o in list_objs]
-        with open("{}.json".format(cls.__name__),"w", encoding="utf-8")as f:
+        with open("{}.json".format(cls.__name__), "w", encoding="utf-8") as f:
             f.write(cls.to_json_string(list_objs))
 
     @classmethod
@@ -51,11 +51,11 @@ class Base:
             new = Square(1)
         else:
             new = None
-        new.update(**dicionary)
+        new.update(**dictionary)
         return new
 
     @classmethod
-    def loads_from_file(cls):
+    def load_from_file(cls):
         '''Loads string from file and unjsonifies.'''
         from os import path
         file = "{}.json".format(cls.__name__)
@@ -66,18 +66,18 @@ class Base:
 
     @classmethod
     def save_to_file_csv(cls, list_objs):
-        '''saves object to csv file.'''
+        '''Saves object to csv file.'''
         from models.rectangle import Rectangle
         from models.square import Square
         if list_objs is not None:
-            if cls is Rectngle:
+            if cls is Rectangle:
                 list_objs = [[o.id, o.width, o.height, o.x, o.y]
-                        for o in list_objs]
+                             for o in list_objs]
             else:
                 list_objs = [[o.id, o.size, o.x, o.y]
-                        for o in list_objs]
-        with open('{}.csv'.format(cls.__name__), 'W', newline='',
-                encoding='utf-8') as f:
+                             for o in list_objs]
+        with open('{}.csv'.format(cls.__name__), 'w', newline='',
+                  encoding='utf-8') as f:
             writer = csv.writer(f)
             writer.writerows(list_objs)
 
@@ -87,17 +87,17 @@ class Base:
         from models.rectangle import Rectangle
         from models.square import Square
         ret = []
-        with open('{}.csv'.format(cls.__name__),'r', newline='',
-                encoding='utf-8') as f:
+        with open('{}.csv'.format(cls.__name__), 'r', newline='',
+                  encoding='utf-8') as f:
             reader = csv.reader(f)
             for row in reader:
                 row = [int(r) for r in row]
                 if cls is Rectangle:
                     d = {"id": row[0], "width": row[1], "height": row[2],
-                        "x": row[3], "y": row[4]} 
+                         "x": row[3], "y": row[4]}
                 else:
                     d = {"id": row[0], "size": row[1],
-                            "x": row[2], "y": row[3]}
+                         "x": row[2], "y": row[3]}
                 ret.append(cls.create(**d))
         return ret
 
@@ -107,7 +107,7 @@ class Base:
         import time
         from random import randrange
         turtle.Screen().colormode(255)
-        for i in  list_rectangles + list_squares:
+        for i in list_rectangles + list_squares:
             t = turtle.Turtle()
             t.color((randrange(255), randrange(255), randrange(255)))
             t.pensize(1)

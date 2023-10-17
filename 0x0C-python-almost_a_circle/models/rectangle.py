@@ -1,128 +1,106 @@
 #!/usr/bin/python3
-'''Module for Base class.'''
-from json import dumps, loads
-import csv
+'''Module for Rectangle class.'''
+from models.base import Base
 
 
-class Base:
-    '''A representation of the base of our OOP hierarchy.'''
+class Rectangle(Base):
+    '''A Rectangle class.'''
 
-    __nb_objects = 0
-
-    def __init__(self, id=None):
+    def __init__(self, width, height, x=0, y=0, id=None):
         '''Constructor.'''
+        super().__init__(id)
+        self.width = width
+        self.height = height
+        self.x = x
+        self.y = y
+
+    @property
+    def width(self):
+        '''Width of this rectangle.'''
+        return self.__width
+
+    @width.setter
+    def width(self, value):
+        self.validate_integer("width", value, False)
+        self.__width = value
+
+    @property
+    def height(self):
+        '''Height of this rectangle.'''
+        return self.__height
+
+    @height.setter
+    def height(self, value):
+        self.validate_integer("height", value, False)
+        self.__height = value
+
+    @property
+    def x(self):
+        '''x of this rectangle.'''
+        return self.__x
+
+    @x.setter
+    def x(self, value):
+        self.validate_integer("x", value)
+        self.__x = value
+
+    @property
+    def y(self):
+        '''y of this rectangle.'''
+        return self.__y
+
+    @y.setter
+    def y(self, value):
+        self.validate_integer("y", value)
+        self.__y = value
+
+    def validate_integer(self, name, value, eq=True):
+        '''Method for validating the value.'''
+        if type(value) != int:
+            raise TypeError("{} must be an integer".format(name))
+        if eq and value < 0:
+            raise ValueError("{} must be >= 0".format(name))
+        elif not eq and value <= 0:
+            raise ValueError("{} must be > 0".format(name))
+
+    def area(self):
+        '''Computes area of this rectangle.'''
+        return self.width * self.height
+
+    def display(self):
+        '''Prints string representation of this rectangle.'''
+        s = '\n' * self.y + \
+            (' ' * self.x + '#' * self.width + '\n') * self.height
+        print(s, end='')
+
+    def __str__(self):
+        '''Returns string info about this rectangle.'''
+        return '[{}] ({}) {}/{} - {}/{}'.\
+            format(type(self).__name__, self.id, self.x, self.y, self.width,
+                   self.height)
+
+    def __update(self, id=None, width=None, height=None, x=None, y=None):
+        '''Internal method that updates instance attributes via */**args.'''
         if id is not None:
             self.id = id
-        else:
-            Base.__nb_objects += 1
-            self.id = Base.__nb_objects
+        if width is not None:
+            self.width = width
+        if height is not None:
+            self.height = height
+        if x is not None:
+            self.x = x
+        if y is not None:
+            self.y = y
 
-    @staticmethod
-    def to_json_string(list_dictionaries):
-        '''Jsonifies a dictionary so it's quite rightly and longer.'''
-        if list_dictionaries is None or not list_dictionaries:
-            return "[]"
-        else:
-            return dumps(list_dictionaries)
+    def update(self, *args, **kwargs):
+        '''Updates instance attributes via no-keyword & keyword args.'''
+        # print(args, kwargs)
+        if args:
+            self.__update(*args)
+        elif kwargs:
+            self.__update(**kwargs)
 
-    @staticmethod
-    def from_json_string(json_string):
-        '''Unjsonifies a dictionary.'''
-        if json_string is None or not json_string:
-            return []
-        return loads(json_string)
-
-    @classmethod
-    def save_to_file(cls, list_objs):
-        '''Saves jsonified object to file.'''
-        if list_objs is not None:
-            list_objs = [o.to_dictionary() for o in list_objs]
-        with open("{}.json".format(cls.__name__), "w", encoding="utf-8") as f:
-            f.write(cls.to_json_string(list_objs))
-
-    @classmethod
-    def create(cls, **dictionary):
-        '''Loads instance from dictionary.'''
-        from models.rectangle import Rectangle
-        from models.square import Square
-        if cls is Rectangle:
-            new = Rectangle(1, 1)
-        elif cls is Square:
-            new = Square(1)
-        else:
-            new = None
-        new.update(**dictionary)
-        return new
-
-    @classmethod
-    def load_from_file(cls):
-        '''Loads string from file and unjsonifies.'''
-        from os import path
-        file = "{}.json".format(cls.__name__)
-        if not path.isfile(file):
-            return []
-        with open(file, "r", encoding="utf-8") as f:
-            return [cls.create(**d) for d in cls.from_json_string(f.read())]
-
-    @classmethod
-    def save_to_file_csv(cls, list_objs):
-        '''Saves object to csv file.'''
-        from models.rectangle import Rectangle
-        from models.square import Square
-        if list_objs is not None:
-            if cls is Rectangle:
-                list_objs = [[o.id, o.width, o.height, o.x, o.y]
-                             for o in list_objs]
-            else:
-                list_objs = [[o.id, o.size, o.x, o.y]
-                             for o in list_objs]
-        with open('{}.csv'.format(cls.__name__), 'w', newline='',
-                  encoding='utf-8') as f:
-            writer = csv.writer(f)
-            writer.writerows(list_objs)
-
-    @classmethod
-    def load_from_file_csv(cls):
-        '''Loads object to csv file.'''
-        from models.rectangle import Rectangle
-        from models.square import Square
-        ret = []
-        with open('{}.csv'.format(cls.__name__), 'r', newline='',
-                  encoding='utf-8') as f:
-            reader = csv.reader(f)
-            for row in reader:
-                row = [int(r) for r in row]
-                if cls is Rectangle:
-                    d = {"id": row[0], "width": row[1], "height": row[2],
-                         "x": row[3], "y": row[4]}
-                else:
-                    d = {"id": row[0], "size": row[1],
-                         "x": row[2], "y": row[3]}
-                ret.append(cls.create(**d))
-        return ret
-
-    @staticmethod
-    def draw(list_rectangles, list_squares):
-        import turtle
-        import time
-        from random import randrange
-        turtle.Screen().colormode(255)
-        for i in list_rectangles + list_squares:
-            t = turtle.Turtle()
-            t.color((randrange(255), randrange(255), randrange(255)))
-            t.pensize(1)
-            t.penup()
-            t.pendown()
-            t.setpos((i.x + t.pos()[0], i.y - t.pos()[1]))
-            t.pensize(10)
-            t.forward(i.width)
-            t.left(90)
-            t.forward(i.height)
-            t.left(90)
-            t.forward(i.width)
-            t.left(90)
-            t.forward(i.height)
-            t.left(90)
-            t.end_fill()
-
-        time.sleep(5)
+    def to_dictionary(self):
+        '''Returns dictionary representation of this class.'''
+        return {"id": self.id, "width": self.__width, "height": self.__height,
+                "x": self.__x, "y": self.__y}
