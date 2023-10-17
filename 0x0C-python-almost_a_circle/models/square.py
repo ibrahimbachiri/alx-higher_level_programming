@@ -1,23 +1,23 @@
 #!/usr/bin/python3
-'''Module for class.'''
+'''Module for Square class.'''
 from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
     '''A Square class.'''
 
-    def __init__(self, size, x=0, id=None):
+    def __init__(self, size, x=0, y=0, id=None):
         '''Constructor.'''
         super().__init__(size, size, x, y, id)
 
     def __str__(self):
-        '''Return info square.'''
+        '''Returns string info about this square.'''
         return '[{}] ({}) {}/{} - {}'.\
             format(type(self).__name__, self.id, self.x, self.y, self.width)
 
     @property
     def size(self):
-        '''Size of Square.'''
+        '''Size of this square.'''
         return self.width
 
     @size.setter
@@ -26,7 +26,7 @@ class Square(Rectangle):
         self.height = value
 
     def __update(self, id=None, size=None, x=None, y=None):
-        '''Internal way that update attributes.'''
+        '''Internal method that updates instance attributes via */**args.'''
         if id is not None:
             self.id = id
         if size is not None:
@@ -37,13 +37,13 @@ class Square(Rectangle):
             self.y = y
 
     def update(self, *args, **kwargs):
-        '''Updates attributes via args.'''
+        '''Updates instance attributes via no-keyword & keyword args.'''
         if args:
             self.__update(*args)
         elif kwargs:
             self.__update(**kwargs)
 
     def to_dictionary(self):
-        '''Returns dictionary class.'''
+        '''Returns dictionary representation of this class.'''
         return {"id": self.id, "size": self.width,
                 "x": self.x, "y": self.y}
