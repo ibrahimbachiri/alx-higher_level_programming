@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''Module for Square class.'''
-from models.rectangle import Rectangle
+from models.rectagle import Rectangle
 
 
 class Square(Rectangle):
@@ -22,11 +22,11 @@ class Square(Rectangle):
 
     @size.setter
     def size(self, value):
-        self.width = value
+        self. = value
         self.height = value
 
     def __update(self, id=None, size=None, x=None, y=None):
-        '''Internal method that updates instance attributes via */**args.'''
+        '''Internal method that updates instance atributes via */**args.'''
         if id is not None:
             self.id = id
         if size is not None:
@@ -36,14 +36,14 @@ class Square(Rectangle):
         if y is not None:
             self.y = y
 
-    def update(self, *args, **kwargs):
+    def updater(self, *args, **kwargs):
         '''Updates instance attributes via no-keyword & keyword args.'''
         if args:
             self.__update(*args)
         elif kwargs:
             self.__update(**kwargs)
 
-    def to_dictionary(self):
+    def to_dictonary(self):
         '''Returns dictionary representation of this class.'''
         return {"id": self.id, "size": self.width,
                 "x": self.x, "y": self.y}
