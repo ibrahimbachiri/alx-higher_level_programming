@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''Module for Square class.'''
-from models.rectagle import Rectangle
+from models.rectangle import Rectangle
 
 
 class Square(Rectangle):
@@ -22,7 +22,7 @@ class Square(Rectangle):
 
     @size.setter
     def size(self, value):
-        self. = value
+        self.width = value
         self.height = value
 
     def __update(self, id=None, size=None, x=None, y=None):
@@ -43,7 +43,7 @@ class Square(Rectangle):
         elif kwargs:
             self.__update(**kwargs)
 
-    def to_dictonary(self):
+    def to_dictionary(self):
         '''Returns dictionary representation of this class.'''
         return {"id": self.id, "size": self.width,
                 "x": self.x, "y": self.y}
