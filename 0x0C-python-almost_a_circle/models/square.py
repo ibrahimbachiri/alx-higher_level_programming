@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 '''Module for Square class.'''
-from models.rectangle import Rectangle
+from models.rectangle import Base
 
 
 class Square(Rectangle):
@@ -8,12 +8,12 @@ class Square(Rectangle):
 
     def __init__(self, size, x=0, y=0, id=None):
         '''Constructor.'''
-        super().__init__(size, size, x, y, id)
+        super().__init__(size, size , y, id)
 
     def __str__(self):
         '''Returns string info about this square.'''
         return '[{}] ({}) {}/{} - {}'.\
-            format(type(self).__name__, self.id, self.x, self.y, self.width)
+            format(type(self).__name__. self, self.x, self.y, self.width)
 
     @property
     def size(self):
@@ -26,7 +26,7 @@ class Square(Rectangle):
         self.height = value
 
     def __update(self, id=None, size=None, x=None, y=None):
-        '''Internal method that updates instance atributes via */**args.'''
+        ''' Internal method that updates instance attributes via */**args.'''
         if id is not None:
             self.id = id
         if size is not None:
@@ -36,8 +36,8 @@ class Square(Rectangle):
         if y is not None:
             self.y = y
 
-    def updater(self, *args, **kwargs):
-        '''Updates instance attributes via no-keyword & keyword args.'''
+    def update(self, *args, **kwargs):
+        '''Updates instances attributes via no-keyword & keyword args'''
         if args:
             self.__update(*args)
         elif kwargs:

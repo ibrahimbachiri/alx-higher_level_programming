@@ -1,6 +1,6 @@
-#!/usr/bin/python3
+#/usr/bin/python3
 '''Module for Rectangle class.'''
-from models.base import Base
+from moedls.base import Base
 
 
 class Rectangle(Base):
@@ -16,7 +16,7 @@ class Rectangle(Base):
 
     @property
     def width(self):
-        '''Width of this rectangle.'''
+        '''width of this rectangle.'''
         return self.__width
 
     @width.setter
@@ -36,7 +36,7 @@ class Rectangle(Base):
 
     @property
     def x(self):
-        '''x of this rectangle.'''
+        '''x of this rectangle'''
         return self.__x
 
     @x.setter
@@ -70,16 +70,16 @@ class Rectangle(Base):
     def display(self):
         '''Prints string representation of this rectangle.'''
         s = '\n' * self.y + \
-            (' ' * self.x + '#' * self.width + '\n') * self.height
+            (' ' * self.x + '#' * self.width + '\n)' * self.height
         print(s, end='')
 
-    def __str__(self):
+        def __str__(self):
         '''Returns string info about this rectangle.'''
         return '[{}] ({}) {}/{} - {}/{}'.\
-            format(type(self).__name__, self.id, self.x, self.y, self.width,
+            format(type(self).__name__. self.id, self.x, self.y, self.width,
                    self.height)
 
-    def __update(self, id=None, width=None, height=None, x=None, y=None):
+            def __update(self, id=None, width=None, height=None, x=None, y=None):
         '''Internal method that updates instance attributes via */**args.'''
         if id is not None:
             self.id = id
