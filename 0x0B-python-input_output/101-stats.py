@@ -1,33 +1,38 @@
 #!/usr/bin/python3
-'Log Parsing'
+
 import sys
 
-status_list = [200, 301, 400, 401, 403, 404, 405, 500]
-try:
-    total_size = 0
-    final_list = []
-    for index, line in enumerate(sys.stdin, 1):
-        if line:
-            line_split = line.split()
-        if len(line_split) > 2:
-            if line_split[-1].isnumeric() and line_split[-2].isnumeric():
-                size = line_split[-1]
-                status = line_split[-2]
-                total_size += int(size)
-        if len(status) > 0 and int(status) in status_list:
-            final_list.append(int(status))
-    if index % 10 == 0:
-        print('File size: {}'.format(total_size))
-        for i in status_list:
-            if i in final_list:
-                status_count = final_list.count(i)
-                print("{}: {}".format(i, status_count))
-except Exception:
-    pass
+metrics = {
+    '200': 0,
+    '301': 0,
+    '400': 0,
+    '401': 0,
+    '403': 0,
+    '404': 0,
+    '405': 0,
+    '500': 0
+}
+total_size = 0
+line_count = 0
 
-finally:
-    print('File size: {}'.format(total_size))
-    for i in status_list:
-        if i in final_list:
-            status_count = final_list.count(i)
-            print("{}: {}".format(i, status_count))
+try:
+    for line in sys.stdin:
+        line_count += 1
+        parts = line.split()
+        if len(parts) > 7:
+            status = parts[-2]
+            size = int(parts[-1])
+            if status in metrics:
+                metrics[status] += 1
+            total_size += size
+        if line_count % 10 == 0:
+            print(f"File size: {total_size}")
+            for code, count in sorted(metrics.items()):
+                if count > 0:
+                    print(f"{code}: {count}")
+
+except KeyboardInterrupt:
+    print(f"File size: {total_size}")
+    for code, count in sorted(metrics.items()):
+        if count > 0:
+            print(f"{code}: {count}")
