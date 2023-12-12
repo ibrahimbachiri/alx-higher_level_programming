@@ -1,5 +1,4 @@
 #!/usr/bin/node
-// 1-rectangle.js
 
 class Rectangle {
   constructor(w, h) {
